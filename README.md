@@ -11,13 +11,13 @@ A controller function is associated with a string through the method `register`.
 
 Inside the controller function, the DOM element is passed in as an argument.
 
-HTML
+**HTML**
 
 ```html
 <div data-controller="MyController"></div>
 ```
 
-JavaScript
+**JavaScript**
 
 ```js
 import controller from '@squarespace/controller';
@@ -34,19 +34,6 @@ controller.register('MyController', MyController);
 
 ## Advanced Usage
 
-### Using ES6
-
-If you prefer to handle transpiling and polyfilling on your own, you can import ES6 from Controller:
-
-```js
-import controller from '@squarespace/controller/src';
-```
-
-Alternately, Controller specifies a `module` property in `package.json` that points to the uncompiled `src/index.js`, so you may be able to simply import `@squarespace/controller` if you're using one of the following bundlers:
-* [Webpack 2](https://webpack.js.org/configuration/resolve/#resolve-mainfields)
-* [Rollup](https://github.com/rollup/rollup-plugin-node-resolve#rollup-plugin-node-resolve)
-
-
 ### Ajax
 
 Controller also exports a method `refresh`. If you use Ajax loading on your site, `refresh` should be called whenever an asynchronous load occurs.
@@ -55,13 +42,13 @@ Controller functions can return an object with `sync` and `destroy` methods. Whe
 
 #### Ajax Example
 
-HTML
+**HTML**
 
 ```html
 <div data-controller="MyController"></div>
 ```
 
-Javascript
+**JavaScript**
 
 ```js
 const controller = require('@squarespace/controller');
@@ -70,7 +57,7 @@ function MyController(element) {
   const handleClick = () => {
     element.toggleClass('clicked');
   };
-  this.addEventListener('click', handleClick);
+  element.addEventListener('click', handleClick);
   return {
     sync: () => {
       element.removeClass('clicked');
@@ -86,6 +73,19 @@ controller.register('MyController', MyController);
 // Assuming this event is dispatched on ajax load
 window.addEventListener('ajax:load', controller.refresh);
 ```
+
+### Using ES6
+
+If you prefer to handle transpiling and polyfilling on your own, you can import ES6 from Controller:
+
+```js
+import controller from '@squarespace/controller/src';
+```
+
+Alternately, Controller specifies a `module` property in `package.json` that points to the uncompiled `src/index.js`, so you may be able to simply import `@squarespace/controller` if you're using one of the following bundlers:
+* [Webpack 2](https://webpack.js.org/configuration/resolve/#resolve-mainfields)
+* [Rollup](https://github.com/rollup/rollup-plugin-node-resolve#rollup-plugin-node-resolve)
+
 
 ## Reference
 
