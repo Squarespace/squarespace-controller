@@ -154,17 +154,11 @@ export function refresh() {
 
 }
 
-const validDOMReadyState = () => (['interactive', 'complete'].includes(document.readyState));
-
-if (validDOMReadyState()) {
+if (['interactive', 'complete'].includes(document.readyState)) {
   refresh();
+} else {
+  document.addEventListener('DOMContentLoaded', refresh);
 }
-
-document.onreadystatechange = () => {
-  if (validDOMReadyState()) {
-    refresh();
-  }
-};
 
 export default {
   register,
