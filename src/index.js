@@ -50,7 +50,7 @@ function isEqualController(a, b) {
  * @param {String} name           String to register controller fn to
  * @param {Function} controller   Controller fn to register
  */
-function register(name, controller) {
+export function register(name, controller) {
   CONTROLLERS_BY_NAME[name] = controller;
 }
 
@@ -60,7 +60,7 @@ function register(name, controller) {
  *
  * @method refresh
  */
-function refresh() {
+export function refresh() {
 
   // Get all nodes with controllers and convert to array
   const nodesWithControllers = Array.from(document.querySelectorAll('[data-controller]'));
@@ -157,6 +157,6 @@ function refresh() {
 document.addEventListener('DOMContentLoaded', refresh);
 
 export default {
-  refresh,
-  register
+  register,
+  refresh
 };
