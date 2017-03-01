@@ -154,7 +154,11 @@ export function refresh() {
 
 }
 
-document.addEventListener('DOMContentLoaded', refresh);
+if (['interactive', 'complete'].includes(document.readyState)) {
+  refresh();
+} else {
+  document.addEventListener('DOMContentLoaded', refresh);
+}
 
 export default {
   register,
