@@ -120,14 +120,10 @@ export function refresh() {
         return !isEqualController(liveController, newController);
       });
 
-    } else {
-
+    } else if (liveController.methods && liveController.methods.destroy) {
       // Controller element is no longer in the DOM, call destructor method of
       // controller.
-      if (liveController.methods && liveController.methods.destroy) {
-        liveController.methods.destroy.apply(liveController.element, null);
-      }
-
+      liveController.methods.destroy.apply(liveController.element, null);
     }
     return isControllerActive;
   });
