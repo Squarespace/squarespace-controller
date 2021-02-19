@@ -1,6 +1,6 @@
 {
   "name": "@squarespace/controller",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "author": "Squarespace, Inc.",
   "description": "A lightweight control assigner for DOM elements",
   "license": "SEE LICENSE IN LICENSE.txt",
