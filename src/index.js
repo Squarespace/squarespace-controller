@@ -150,9 +150,15 @@ export function refresh() {
 
 }
 
-if (['interactive', 'complete'].includes(document.readyState)) {
+if (document.readyState === 'complete') {
+  // All sub-resources have finished loading — safe to invoke refresh
   refresh();
 } else {
+  // If 'loading' or 'interactive', not all sub-resources have finished loading.
+  // Specifically, deferred scripts begin executing in the 'interactive' state.
+  // This means that if a deferred site-bundle.js tries to refresh controllers
+  // immediately rather than waiting for DCL, it will break the event listener
+  // dependency order on V6 rollups.
   document.addEventListener('DOMContentLoaded', refresh);
 }
 
